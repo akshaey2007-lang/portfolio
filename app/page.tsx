@@ -5,27 +5,44 @@ import { useEffect, useState, type PointerEvent as ReactPointerEvent } from 'rea
 const projects = [
   {
     number: '01',
-    label: 'Freelance marketplace',
-    title: 'Pluto',
-    description: 'A responsive marketplace connecting clients and freelancers through profiles, project posting, proposals and client dashboards.',
-    tags: ['Full-stack', 'Responsive UI', 'Marketplace'],
+    label: 'Protected work marketplace',
+    title: 'Pluto Platform',
+    description: 'A multi-page marketplace prototype for verified independent talent, focused client shortlists, protected milestones and role-specific workspaces.',
+    tags: ['JavaScript', 'Node.js', 'Responsive UI'],
     tone: 'blue',
+    visual: 'pluto',
+    href: 'https://github.com/akshaey2007-lang/pluto-platform',
+    featured: true,
   },
   {
     number: '02',
+    label: 'Placement readiness platform',
+    title: 'B-Ready',
+    description: 'A career-preparation dashboard that measures placement readiness, tracks skill gaps and checklists, and generates role-aware study priorities.',
+    tags: ['React', 'Vite', 'LocalStorage'],
+    tone: 'ink',
+    visual: 'readiness',
+    href: 'https://github.com/akshaey2007-lang/B-Ready',
+    featured: true,
+  },
+  {
+    number: '03',
     label: 'Health-tech web app',
     title: 'Healthcare Recommender',
     description: 'A symptom-based recommendation system with clear service suggestions and a responsive experience across desktop and mobile.',
     tags: ['HTML5', 'CSS3', 'JavaScript'],
     tone: 'orange',
+    visual: 'mobile',
   },
   {
-    number: '03',
+    number: '04',
     label: 'Personal brand system',
     title: 'Portfolio Index',
     description: 'This responsive portfolio experience combines structured storytelling, interactive project presentation and accessible front-end craft.',
     tags: ['React', 'Next.js', 'Interaction'],
     tone: 'ink',
+    visual: 'lab',
+    href: 'https://github.com/akshaey2007-lang/portfolio',
   },
 ];
 
@@ -123,24 +140,25 @@ export default function Home() {
         <header className="editorial-head">
           <div><span>02 / INDEX</span><p>Selected work</p></div>
           <h2>PROJECTS<br /><em>WITH PURPOSE.</em></h2>
-          <p className="head-note">Three focused case studies designed to show range, thought process and technical craft.</p>
+          <p className="head-note">Four focused case studies designed to show range, product thinking and technical craft.</p>
         </header>
 
         <div className="projects-grid">
-          {projects.map((project, index) => (
-            <article className={`project-card project-card--${project.tone} ${index === 0 ? 'project-card--wide' : ''}`} key={project.number} onPointerMove={tiltCard} onPointerLeave={resetCard}>
+          {projects.map((project) => (
+            <article className={`project-card project-card--${project.tone} ${project.featured ? 'project-card--wide' : ''}`} key={project.number} onPointerMove={tiltCard} onPointerLeave={resetCard}>
               <div className="project-visual">
                 <div className="card-glow" />
-                {index === 0 && <div className="interface-mock interface-mock--dashboard"><div className="mock-rail"><b>AK</b><i /><i /><i /></div><div className="mock-main"><small>PLUTO / MARKETPLACE</small><strong>Clients meet<br />freelancers.</strong><div className="mock-chart"><i /><i /><i /><i /><i /><i /></div></div><div className="mock-float">4<span>Core flows</span></div></div>}
-                {index === 1 && <div className="interface-mock interface-mock--mobile"><div className="phone phone-one"><small>DISCOVER</small><b>01</b><i /></div><div className="phone phone-two"><small>BUILD</small><b>02</b><i /></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /></div>}
-                {index === 2 && <div className="interface-mock interface-mock--lab"><div className="lab-ring"><span>03</span><i /><i /><i /></div><div className="lab-tag lab-tag--one">IDEA</div><div className="lab-tag lab-tag--two">CODE</div><div className="lab-tag lab-tag--three">SHIP</div></div>}
+                {project.visual === 'pluto' && <div className="interface-mock interface-mock--dashboard"><div className="mock-rail"><b>AK</b><i /><i /><i /></div><div className="mock-main"><small>PLUTO / MARKETPLACE</small><strong>Clients meet<br />freelancers.</strong><div className="mock-chart"><i /><i /><i /><i /><i /><i /></div></div><div className="mock-float">4<span>Core flows</span></div></div>}
+                {project.visual === 'readiness' && <div className="interface-mock interface-mock--readiness"><div className="readiness-nav"><b>B.</b><span>OVERVIEW</span><span>SKILLS</span><span>PLAN</span></div><div className="readiness-main"><small>B-READY / CAREER COCKPIT</small><strong>72<sup>%</sup></strong><p>Placement readiness</p><div className="readiness-bars"><i /><i /><i /><i /></div></div><div className="readiness-focus"><span>NEXT FOCUS</span><b>DSA + Aptitude</b></div></div>}
+                {project.visual === 'mobile' && <div className="interface-mock interface-mock--mobile"><div className="phone phone-one"><small>DISCOVER</small><b>01</b><i /></div><div className="phone phone-two"><small>BUILD</small><b>02</b><i /></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /></div>}
+                {project.visual === 'lab' && <div className="interface-mock interface-mock--lab"><div className="lab-ring"><span>04</span><i /><i /><i /></div><div className="lab-tag lab-tag--one">IDEA</div><div className="lab-tag lab-tag--two">CODE</div><div className="lab-tag lab-tag--three">SHIP</div></div>}
                 <span className="project-number">{project.number}</span>
               </div>
               <div className="project-copy">
                 <div><span>{project.label}</span><h3>{project.title}</h3></div>
                 <p>{project.description}</p>
                 <div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                <button type="button" aria-label={`Add link for ${project.title}`}>Add project link <span>↗</span></button>
+                {project.href ? <a className="project-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`View ${project.title} on GitHub`}>View on GitHub <span>↗</span></a> : <span className="project-link project-link--muted">Case study in progress <span>↗</span></span>}
               </div>
             </article>
           ))}
@@ -206,7 +224,7 @@ export default function Home() {
         <div className="contact-actions">
           <a href="mailto:akshaey2007@gmail.com"><span>Email</span><b>akshaey2007@gmail.com</b><i>↗</i></a>
           <a href="https://www.linkedin.com/in/akshaey-keerthi-sn-348352426" target="_blank" rel="noreferrer"><span>LinkedIn</span><b>View profile</b><i>↗</i></a>
-          <a href="https://github.com/akshaey23" target="_blank" rel="noreferrer"><span>GitHub</span><b>akshaey23</b><i>↗</i></a>
+          <a href="https://github.com/akshaey2007-lang" target="_blank" rel="noreferrer"><span>GitHub</span><b>akshaey2007-lang</b><i>↗</i></a>
         </div>
         <div className="footer-meta"><b>A/K</b><span>Full-Stack Web Developer · 2026</span><a href="#top">Back to top ↑</a></div>
       </footer>
