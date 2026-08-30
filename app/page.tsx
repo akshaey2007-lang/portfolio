@@ -2,6 +2,9 @@
 
 import { useEffect, useState, type PointerEvent as ReactPointerEvent } from 'react';
 
+const publicPath = (path: string) =>
+  `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${path}`;
+
 const projects = [
   {
     number: '01',
@@ -129,7 +132,7 @@ export default function Home() {
         <div className="portrait-zone">
           <div className="portrait-block">
             <div className="portrait-number">NO. 01</div>
-            <img src="/akshaey-portrait.png" alt="Portrait of Akshaey Keerthi" />
+            <img src={publicPath('/akshaey-portrait.png')} alt="Portrait of Akshaey Keerthi" />
             <div className="portrait-caption"><b>Role</b><span>Full-Stack Web Developer</span></div>
           </div>
           <span className="skill-chip chip-one">FRONT-END</span>
@@ -205,11 +208,11 @@ export default function Home() {
 
       <section className="about-section" id="about">
         <div className="resume-panel">
-          <div className="resume-preview-frame"><img src="/resume-preview.png" alt="Preview of Akshaey Keerthi's full-stack developer resume" /></div>
+          <div className="resume-preview-frame"><img src={publicPath('/resume-preview.png')} alt="Preview of Akshaey Keerthi's full-stack developer resume" /></div>
           <div className="resume-summary">
             <span>RESUME / PDF</span>
             <h3>Full-Stack Developer Resume</h3>
-            <div><a href="/Akshaey-Keerthi-Full-Stack-Developer-Resume.pdf" target="_blank" rel="noreferrer">View résumé ↗</a><a href="/Akshaey-Keerthi-Full-Stack-Developer-Resume.pdf" download>Download ↓</a></div>
+            <div><a href={publicPath('/Akshaey-Keerthi-Full-Stack-Developer-Resume.pdf')} target="_blank" rel="noreferrer">View résumé ↗</a><a href={publicPath('/Akshaey-Keerthi-Full-Stack-Developer-Resume.pdf')} download>Download ↓</a></div>
           </div>
         </div>
         <div className="about-copy">
