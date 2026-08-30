@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import Image from 'next/image';
 
 const projects = [
   {
@@ -11,6 +12,8 @@ const projects = [
     tags: ['JavaScript', 'Node.js', 'Responsive UI'],
     tone: 'blue',
     visual: 'pluto',
+    image: '/pluto-preview.png',
+    imageAlt: 'Pluto marketplace homepage showing its fair-access work platform',
     href: 'https://github.com/akshaey2007-lang/pluto-platform',
     featured: true,
   },
@@ -22,6 +25,8 @@ const projects = [
     tags: ['React', 'Vite', 'LocalStorage'],
     tone: 'ink',
     visual: 'readiness',
+    image: '/b-ready-preview.png',
+    imageAlt: 'B-Ready placement readiness dashboard with progress and skill insights',
     href: 'https://github.com/akshaey2007-lang/B-Ready',
     featured: true,
   },
@@ -148,10 +153,14 @@ export default function Home() {
             <article className={`project-card project-card--${project.tone} ${project.featured ? 'project-card--wide' : ''}`} key={project.number} onPointerMove={tiltCard} onPointerLeave={resetCard}>
               <div className="project-visual">
                 <div className="card-glow" />
-                {project.visual === 'pluto' && <div className="interface-mock interface-mock--dashboard"><div className="mock-rail"><b>AK</b><i /><i /><i /></div><div className="mock-main"><small>PLUTO / MARKETPLACE</small><strong>Clients meet<br />freelancers.</strong><div className="mock-chart"><i /><i /><i /><i /><i /><i /></div></div><div className="mock-float">4<span>Core flows</span></div></div>}
-                {project.visual === 'readiness' && <div className="interface-mock interface-mock--readiness"><div className="readiness-nav"><b>B.</b><span>OVERVIEW</span><span>SKILLS</span><span>PLAN</span></div><div className="readiness-main"><small>B-READY / CAREER COCKPIT</small><strong>72<sup>%</sup></strong><p>Placement readiness</p><div className="readiness-bars"><i /><i /><i /><i /></div></div><div className="readiness-focus"><span>NEXT FOCUS</span><b>DSA + Aptitude</b></div></div>}
-                {project.visual === 'mobile' && <div className="interface-mock interface-mock--mobile"><div className="phone phone-one"><small>DISCOVER</small><b>01</b><i /></div><div className="phone phone-two"><small>BUILD</small><b>02</b><i /></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /></div>}
-                {project.visual === 'lab' && <div className="interface-mock interface-mock--lab"><div className="lab-ring"><span>04</span><i /><i /><i /></div><div className="lab-tag lab-tag--one">IDEA</div><div className="lab-tag lab-tag--two">CODE</div><div className="lab-tag lab-tag--three">SHIP</div></div>}
+                {project.image ? (
+                  <Image className="project-preview-image" src={project.image} alt={project.imageAlt} width={1440} height={900} sizes="(max-width: 900px) 100vw, 80vw" />
+                ) : (
+                  <>
+                    {project.visual === 'mobile' && <div className="interface-mock interface-mock--mobile"><div className="phone phone-one"><small>DISCOVER</small><b>01</b><i /></div><div className="phone phone-two"><small>BUILD</small><b>02</b><i /></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /></div>}
+                    {project.visual === 'lab' && <div className="interface-mock interface-mock--lab"><div className="lab-ring"><span>04</span><i /><i /><i /></div><div className="lab-tag lab-tag--one">IDEA</div><div className="lab-tag lab-tag--two">CODE</div><div className="lab-tag lab-tag--three">SHIP</div></div>}
+                  </>
+                )}
                 <span className="project-number">{project.number}</span>
               </div>
               <div className="project-copy">
