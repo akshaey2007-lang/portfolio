@@ -165,7 +165,7 @@ export default function Home() {
                   <div className="project-collage" aria-label={`${project.title} interface collage`}>
                     {project.screens.map((screen, index) => (
                       <div className={`project-shot project-shot--${index + 1}`} key={screen.src}>
-                        <img src={screen.src} alt={screen.alt} loading="lazy" decoding="async" />
+                        <img src={publicPath(screen.src)} alt={screen.alt} loading="lazy" decoding="async" />
                       </div>
                     ))}
                   </div>
