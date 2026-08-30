@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState, type PointerEvent as ReactPointerEvent } from 'react';
-import Image from 'next/image';
 
 const projects = [
   {
@@ -12,8 +11,11 @@ const projects = [
     tags: ['JavaScript', 'Node.js', 'Responsive UI'],
     tone: 'blue',
     visual: 'pluto',
-    image: '/pluto-preview.png',
-    imageAlt: 'Pluto marketplace homepage showing its fair-access work platform',
+    screens: [
+      { src: '/pluto-home.png', alt: 'Pluto marketplace homepage' },
+      { src: '/pluto-how-it-works.png', alt: 'Pluto project workflow page' },
+      { src: '/pluto-client-dashboard.png', alt: 'Pluto client workspace dashboard' },
+    ],
     href: 'https://github.com/akshaey2007-lang/pluto-platform',
     featured: true,
   },
@@ -25,8 +27,11 @@ const projects = [
     tags: ['React', 'Vite', 'LocalStorage'],
     tone: 'ink',
     visual: 'readiness',
-    image: '/b-ready-preview.png',
-    imageAlt: 'B-Ready placement readiness dashboard with progress and skill insights',
+    screens: [
+      { src: '/b-ready-dashboard.png', alt: 'B-Ready placement command center' },
+      { src: '/b-ready-skills.png', alt: 'B-Ready skills tracking page' },
+      { src: '/b-ready-recommendations.png', alt: 'B-Ready study recommendations page' },
+    ],
     href: 'https://github.com/akshaey2007-lang/B-Ready',
     featured: true,
   },
@@ -153,14 +158,21 @@ export default function Home() {
             <article className={`project-card project-card--${project.tone} ${project.featured ? 'project-card--wide' : ''}`} key={project.number} onPointerMove={tiltCard} onPointerLeave={resetCard}>
               <div className="project-visual">
                 <div className="card-glow" />
-                {project.image ? (
-                  <Image className="project-preview-image" src={project.image} alt={project.imageAlt} width={1440} height={900} sizes="(max-width: 900px) 100vw, 80vw" />
+                {project.screens ? (
+                  <div className="project-collage" aria-label={`${project.title} interface collage`}>
+                    {project.screens.map((screen, index) => (
+                      <div className={`project-shot project-shot--${index + 1}`} key={screen.src}>
+                        <img src={screen.src} alt={screen.alt} loading="lazy" decoding="async" />
+                      </div>
+                    ))}
+                  </div>
                 ) : (
                   <>
                     {project.visual === 'mobile' && <div className="interface-mock interface-mock--mobile"><div className="phone phone-one"><small>DISCOVER</small><b>01</b><i /></div><div className="phone phone-two"><small>BUILD</small><b>02</b><i /></div><div className="orbit orbit-one" /><div className="orbit orbit-two" /></div>}
                     {project.visual === 'lab' && <div className="interface-mock interface-mock--lab"><div className="lab-ring"><span>04</span><i /><i /><i /></div><div className="lab-tag lab-tag--one">IDEA</div><div className="lab-tag lab-tag--two">CODE</div><div className="lab-tag lab-tag--three">SHIP</div></div>}
                   </>
                 )}
+                {project.href && <a className="project-visual-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`Open the ${project.title} project`}><span>Open project</span></a>}
                 <span className="project-number">{project.number}</span>
               </div>
               <div className="project-copy">
