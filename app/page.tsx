@@ -8,6 +8,21 @@ const publicPath = (path: string) =>
 const projects = [
   {
     number: '01',
+    label: 'Synchronized music experience',
+    title: 'HearU',
+    description: 'A local-first music player with private listening rooms, shareable invite links and synchronized playback for friends across devices.',
+    tags: ['React', 'TypeScript', 'Realtime Sync'],
+    tone: 'mist',
+    visual: 'hearu',
+    screens: [
+      { src: '/hearu-preview.png', alt: 'HearU listen-together music app' },
+    ],
+    href: 'https://akshaey2007-lang.github.io/HearU/',
+    repoHref: 'https://github.com/akshaey2007-lang/HearU',
+    featured: true,
+  },
+  {
+    number: '02',
     label: 'Protected work marketplace',
     title: 'Pluto Platform',
     description: 'A multi-page marketplace prototype for verified independent talent, focused client shortlists, protected milestones and role-specific workspaces.',
@@ -23,7 +38,7 @@ const projects = [
     featured: true,
   },
   {
-    number: '02',
+    number: '03',
     label: 'Placement readiness platform',
     title: 'B-Ready',
     description: 'A career-preparation dashboard that measures placement readiness, tracks skill gaps and checklists, and generates role-aware study priorities.',
@@ -39,7 +54,7 @@ const projects = [
     featured: true,
   },
   {
-    number: '03',
+    number: '04',
     label: 'Health-tech web app',
     title: 'Healthcare Recommender',
     description: 'A symptom-based recommendation system with clear service suggestions and a responsive experience across desktop and mobile.',
@@ -48,7 +63,7 @@ const projects = [
     visual: 'mobile',
   },
   {
-    number: '04',
+    number: '05',
     label: 'Personal brand system',
     title: 'Portfolio Index',
     description: 'This responsive portfolio experience combines structured storytelling, interactive project presentation and accessible front-end craft.',
@@ -153,7 +168,7 @@ export default function Home() {
         <header className="editorial-head">
           <div><span>02 / INDEX</span><p>Selected work</p></div>
           <h2>PROJECTS<br /><em>WITH PURPOSE.</em></h2>
-          <p className="head-note">Four focused case studies designed to show range, product thinking and technical craft.</p>
+          <p className="head-note">Five focused projects designed to show range, product thinking and technical craft.</p>
         </header>
 
         <div className="projects-grid">
@@ -162,7 +177,7 @@ export default function Home() {
               <div className="project-visual">
                 <div className="card-glow" />
                 {project.screens ? (
-                  <div className="project-collage" aria-label={`${project.title} interface collage`}>
+                  <div className={`project-collage ${project.screens.length === 1 ? 'project-collage--single' : ''}`} aria-label={`${project.title} interface collage`}>
                     {project.screens.map((screen, index) => (
                       <div className={`project-shot project-shot--${index + 1}`} key={screen.src}>
                         <img src={publicPath(screen.src)} alt={screen.alt} loading="lazy" decoding="async" />
@@ -182,7 +197,12 @@ export default function Home() {
                 <div><span>{project.label}</span><h3>{project.title}</h3></div>
                 <p>{project.description}</p>
                 <div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                {project.href ? <a className="project-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`View ${project.title} on GitHub`}>View on GitHub <span>↗</span></a> : <span className="project-link project-link--muted">Case study in progress <span>↗</span></span>}
+                {project.href ? (
+                  <div className="project-actions">
+                    <a className="project-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}>{project.repoHref ? 'Open live app' : 'View on GitHub'} <span>↗</span></a>
+                    {project.repoHref && <a className="project-link" href={project.repoHref} target="_blank" rel="noreferrer" aria-label={`View ${project.title} source code`}>Source code <span>↗</span></a>}
+                  </div>
+                ) : <span className="project-link project-link--muted">Case study in progress <span>↗</span></span>}
               </div>
             </article>
           ))}
