@@ -55,15 +55,6 @@ const projects = [
   },
   {
     number: '04',
-    label: 'Health-tech web app',
-    title: 'Healthcare Recommender',
-    description: 'A symptom-based recommendation system with clear service suggestions and a responsive experience across desktop and mobile.',
-    tags: ['HTML5', 'CSS3', 'JavaScript'],
-    tone: 'orange',
-    visual: 'mobile',
-  },
-  {
-    number: '05',
     label: 'Personal brand system',
     title: 'Portfolio Index',
     description: 'This responsive portfolio experience combines structured storytelling, interactive project presentation and accessible front-end craft.',
@@ -168,7 +159,7 @@ export default function Home() {
         <header className="editorial-head">
           <div><span>02 / INDEX</span><p>Selected work</p></div>
           <h2>PROJECTS<br /><em>WITH PURPOSE.</em></h2>
-          <p className="head-note">Five focused projects designed to show range, product thinking and technical craft.</p>
+          <p className="head-note">Four focused projects designed to show range, product thinking and technical craft.</p>
         </header>
 
         <div className="projects-grid">
