@@ -72,9 +72,6 @@ a { color: inherit; text-decoration: none; }
 .project-card--ink .project-visual { color: white; background: var(--ink); }
 .project-card--mist .project-visual { color: var(--ink); background: #dfe7ef; }
 .project-collage { position: absolute; inset: clamp(32px, 5vw, 72px); display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); grid-template-rows: 1fr 1fr; gap: clamp(10px, 1.4vw, 20px); transform: rotate(-1deg); }
-.project-collage--single { inset: clamp(42px, 6vw, 84px); display: block; transform: rotate(1deg); }
-.project-collage--single .project-shot { width: 100%; height: 100%; box-shadow: 16px 18px 0 var(--blue); }
-.project-collage--single .project-shot img { object-position: center; }
 .project-shot { min-width: 0; min-height: 0; overflow: hidden; border: 1px solid var(--ink); background: var(--paper); box-shadow: 14px 15px 0 var(--ink); }
 .project-card--ink .project-shot { border-color: #ffffff80; box-shadow: 14px 15px 0 var(--orange); }
 .project-shot--1 { grid-row: 1 / -1; }

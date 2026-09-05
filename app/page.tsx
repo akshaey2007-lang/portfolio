@@ -15,7 +15,9 @@ const projects = [
     tone: 'mist',
     visual: 'hearu',
     screens: [
-      { src: '/hearu-preview.png', alt: 'HearU listen-together music app' },
+      { src: '/hearu-home.png', alt: 'HearU home screen with listening room actions' },
+      { src: '/hearu-library.png', alt: 'HearU local music library screen' },
+      { src: '/hearu-create.png', alt: 'HearU listening room creation screen' },
     ],
     href: 'https://akshaey2007-lang.github.io/HearU/',
     repoHref: 'https://github.com/akshaey2007-lang/HearU',
@@ -168,7 +170,7 @@ export default function Home() {
               <div className="project-visual">
                 <div className="card-glow" />
                 {project.screens ? (
-                  <div className={`project-collage ${project.screens.length === 1 ? 'project-collage--single' : ''}`} aria-label={`${project.title} interface collage`}>
+                  <div className="project-collage" aria-label={`${project.title} interface collage`}>
                     {project.screens.map((screen, index) => (
                       <div className={`project-shot project-shot--${index + 1}`} key={screen.src}>
                         <img src={publicPath(screen.src)} alt={screen.alt} loading="lazy" decoding="async" />
